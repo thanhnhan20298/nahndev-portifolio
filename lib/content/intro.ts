@@ -1,0 +1,8 @@
+export const systemIntro = {
+  alertTitle: "SYSTEM ALERT",
+  warning: "WARNING: ACCESS RESTRICTED. AGENT DOSSIER INSIDE.",
+  button: "ENTER MISSION",
+  buttonAlt: "BYPASS FIREWALL",
+  scanLines: ["INITIALIZING BIOMETRIC...", "RETINA SCAN IN PROGRESS...", "CLEARANCE: GRANTED"],
+  granted: "ACCESS GRANTED — LOADING DOSSIER",
+};
