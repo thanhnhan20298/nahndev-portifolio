@@ -1,7 +1,5 @@
 "use client";
 
-import Image from "next/image";
-import { useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { about } from "@/lib/content/about";
 import { assets } from "@/lib/content/assets";
@@ -23,9 +21,6 @@ function AvatarFallback({ className }: { className?: string }) {
 }
 
 function Avatar({ className }: { className?: string }) {
-  const [legacyOk, setLegacyOk] = useState(true);
-  const legacySrc = "/images/avatar/agent-portrait.png";
-
   return (
     <AssetImage
       src={assets.avatar}
@@ -34,21 +29,7 @@ function Avatar({ className }: { className?: string }) {
       height={400}
       className={cn("hero-profile-card__photo", className)}
       priority
-      fallback={
-        legacyOk ? (
-          <Image
-            src={legacySrc}
-            alt=""
-            width={400}
-            height={400}
-            className={cn("hero-profile-card__photo", className)}
-            onError={() => setLegacyOk(false)}
-            priority
-          />
-        ) : (
-          <AvatarFallback className={className} />
-        )
-      }
+      fallback={<AvatarFallback className={className} />}
     />
   );
 }

@@ -1,6 +1,6 @@
 # AGENTS
 
-Interactive portfolio — **`doc/ARCHITECTURE.md`** is the source of truth for layout and conventions.
+Interactive portfolio — conventions below.
 
 ## Stack
 
@@ -24,8 +24,9 @@ lib/motion/            GSAP + scroll tokens
 - **Nav** — use `siteNavItems` from `lib/config/navigation.ts`; do not hardcode links in `SiteNav`.
 - **Types** — `lib/content/types.ts`; re-export from domain files.
 - Theme: black + red, spy/agent tactical. **No** One Piece / wanted poster IP.
-- CSS: `app/styles/` split by domain; `manga-*` = global shell tokens.
+- CSS: `app/styles/` split by domain; `site-*` = global shell tokens.
 - `GsapProvider` enables motion after boot; respect `prefers-reduced-motion`.
+- **Images** — WebP in git; paths in `lib/content/assets.ts`. PNG sources stay local.
 
 ## Features map
 

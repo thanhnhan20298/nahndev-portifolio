@@ -1,24 +1,16 @@
-# Images folder
+# Images
 
-Generate art with **Midjourney** (or similar) using prompts in [`doc/ASSET-PROMPTS.md`](../doc/ASSET-PROMPTS.md).
-
-## Layout
+Paths are declared in `lib/content/assets.ts`. The repo ships **WebP** only.
 
 ```
 public/images/
-  avatar/agent-portrait.png      ← Hero profile card (square, ~800×800)
-  hero/field-hq-backdrop.png     ← Optional wide hero BG (~1920×1080)
-  hero/tactical-hud.png          ← Optional HUD overlay
-  projects/manga-portfolio-cover.png
-  projects/crypto-tools-cover.png
-  chapters/about-briefing.png    ← Section backgrounds (About, Skills, …)
-  chapters/radar-scan.png
-  chapters/motion-lab.png
-  chapters/mission-log.png
-  chapters/case-files.png
-  chapters/comms-channel.png
+  avatar/agent-portrait.webp
+  hero/field-hq-backdrop.webp
+  projects/manga-portfolio-cover.webp
+  projects/crypto-tools-cover.webp
+  chapters/*.webp              # section backdrops
 ```
 
-Export as **PNG** or **WebP**. Keep files under ~500 KB when possible (compress with [Squoosh](https://squoosh.app)).
+To replace art: drop a PNG locally (gitignored), run `npm run images:optimize`, commit the new `.webp`.
 
-Missing files are OK — the site uses CSS / 3D fallbacks until you add images.
+Missing files are OK — the site falls back to CSS / 3D.

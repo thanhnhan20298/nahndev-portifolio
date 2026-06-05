@@ -1,4 +1,4 @@
-/** PM2 — set `cwd` to the app path on your VPS. See doc/DEPLOY-VPS.md */
+/** PM2 — set `cwd` to the app path on your server. */
 module.exports = {
   apps: [
     {

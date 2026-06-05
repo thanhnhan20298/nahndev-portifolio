@@ -13,13 +13,10 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000).
 
-## For reviewers (HR / tech lead)
+## For reviewers
 
 - **Copy & résumé data:** `lib/content/` — no marketing text inside components.
-- **Architecture:** [`doc/ARCHITECTURE.md`](doc/ARCHITECTURE.md)
-- **Design spec:** [`doc/document.md`](doc/document.md)
-- **Image prompts:** [`doc/ASSET-PROMPTS.md`](doc/ASSET-PROMPTS.md)
-- **Agent notes:** [`AGENTS.md`](AGENTS.md)
+- **Structure:** see below; edit content in the table under [Edit content](#edit-content).
 
 ## Project structure
 
@@ -44,6 +41,7 @@ lib/
 
 context/                      # GsapProvider
 hooks/                        # useScrollReveal, useSectionSpy
+public/images/                # WebP assets (see lib/content/assets.ts)
 ```
 
 ## Edit content
@@ -56,18 +54,25 @@ hooks/                        # useScrollReveal, useSectionSpy
 | `lib/content/projects.ts`           | Portfolio projects                        |
 | `lib/content/contact.ts`            | Email, socials                            |
 | `lib/content/adventure.ts`          | Section order (nav follows automatically) |
+| `lib/content/assets.ts`             | Image paths under `public/images/`        |
 
-## Deploy (Vultr + domain)
+## Deploy
 
-[`doc/DEPLOY-VPS.md`](doc/DEPLOY-VPS.md) — VPS, Nginx, SSL, PM2.
+```bash
+npm run build
+npm start
+```
+
+Use PM2 or your host's process manager. Set `PORT` if the default `3000` is taken.
 
 ## Scripts
 
-| Command             | Purpose               |
-| ------------------- | --------------------- |
-| `npm run dev`       | Development server    |
-| `npm run build`     | Production build      |
-| `npm run start`     | Run production server |
-| `npm run lint`      | ESLint                |
-| `npm run typecheck` | TypeScript check      |
-| `npm run check`     | lint + typecheck      |
+| Command                  | Purpose                          |
+| ------------------------ | -------------------------------- |
+| `npm run dev`            | Development server               |
+| `npm run build`          | Production build                 |
+| `npm run start`          | Run production server            |
+| `npm run lint`           | ESLint                           |
+| `npm run typecheck`      | TypeScript check                 |
+| `npm run check`          | lint + typecheck                 |
+| `npm run images:optimize`| PNG → WebP (dev; PNG not in git) |

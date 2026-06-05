@@ -1,6 +1,6 @@
 /**
- * Image manifest — drop files under public/images/ (see doc/ASSET-PROMPTS.md).
- * Prefer WebP (run npm run images:optimize); PNG kept as fallback on disk.
+ * Image manifest — WebP files under public/images/.
+ * Replace art: add PNG locally → npm run images:optimize → commit .webp.
  */
 
 import type { ProjectArtKey, SectionBackdropId } from "./types";

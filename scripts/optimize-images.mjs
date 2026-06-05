@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 /**
- * Convert public/images PNG files to WebP (keeps PNG as fallback).
+ * Convert local PNG files in public/images/ to WebP for git.
+ * PNG sources are gitignored; only .webp is committed.
  * Run: npm run images:optimize
  */
 import fs from "fs";
