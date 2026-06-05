@@ -14,14 +14,14 @@ Replace `yourdomain.com` with your real domain (e.g. `nahndev.dev`).
 2. **Products** → **Compute** → **Deploy Server** (or **+** top right)
 3. Choose configuration:
 
-| Item | Recommendation for this project |
-|------|----------------------------------|
-| **Type** | Cloud Compute — Shared CPU (enough) or Regular Performance if builds are slow |
-| **Location** | Singapore / Tokyo / Seoul (near Vietnam) or your preferred region |
-| **Image** | **Ubuntu 24.04 LTS** x64 |
-| **Plan** | **2 GB RAM / 1 vCPU** or more (`npm run build` is RAM-heavy; 1 GB may OOM) |
-| **SSH Keys** | Add your public key (Mac: `cat ~/.ssh/id_ed25519.pub`) — passwordless login |
-| **Server hostname** | `nahndev-portfolio` (optional) |
+| Item                | Recommendation for this project                                               |
+| ------------------- | ----------------------------------------------------------------------------- |
+| **Type**            | Cloud Compute — Shared CPU (enough) or Regular Performance if builds are slow |
+| **Location**        | Singapore / Tokyo / Seoul (near Vietnam) or your preferred region             |
+| **Image**           | **Ubuntu 24.04 LTS** x64                                                      |
+| **Plan**            | **2 GB RAM / 1 vCPU** or more (`npm run build` is RAM-heavy; 1 GB may OOM)    |
+| **SSH Keys**        | Add your public key (Mac: `cat ~/.ssh/id_ed25519.pub`) — passwordless login   |
+| **Server hostname** | `nahndev-portfolio` (optional)                                                |
 
 4. **Deploy** → wait until status is **Running** (1–2 minutes)
 
@@ -29,7 +29,7 @@ Replace `yourdomain.com` with your real domain (e.g. `nahndev.dev`).
 
 On the instance screen:
 
-- Copy **IP Address** (IPv4) — for DNS and SSH  
+- Copy **IP Address** (IPv4) — for DNS and SSH
 - Example: `ssh root@203.0.113.50`
 
 Without an SSH key, Vultr sends the **root password** by email / panel (**Settings** → **View Console**).
@@ -48,11 +48,11 @@ Vultr has a firewall **in the panel**, separate from `ufw` on the OS — **open 
 2. Name: `nahndev-web`
 3. Add **Inbound** rules:
 
-| Protocol | Port / range | Source | Notes |
-|----------|----------------|--------|-------|
-| TCP | 22 | `0.0.0.0/0` | SSH (narrow to your home IP later) |
-| TCP | 80 | `0.0.0.0/0` | HTTP |
-| TCP | 443 | `0.0.0.0/0` | HTTPS |
+| Protocol | Port / range | Source      | Notes                              |
+| -------- | ------------ | ----------- | ---------------------------------- |
+| TCP      | 22           | `0.0.0.0/0` | SSH (narrow to your home IP later) |
+| TCP      | 80           | `0.0.0.0/0` | HTTP                               |
+| TCP      | 443          | `0.0.0.0/0` | HTTPS                              |
 
 4. **Linked Instances** → attach the firewall to your VPS
 
@@ -70,19 +70,19 @@ Before big changes: **Snapshots** → snapshot the instance for rollback.
 
 **Products** → **DNS** → add domain → create records:
 
-| Type | Name | Data |
-|------|------|------|
-| A | `@` | `YOUR_VULTR_IP` |
-| A | `www` | `YOUR_VULTR_IP` |
+| Type | Name  | Data            |
+| ---- | ----- | --------------- |
+| A    | `@`   | `YOUR_VULTR_IP` |
+| A    | `www` | `YOUR_VULTR_IP` |
 
 ### Domain elsewhere (Namecheap, Cloudflare, …)
 
 At the registrar, update nameservers or DNS only:
 
-| Type | Name | Value |
-|------|------|-------|
-| A | `@` | `YOUR_VULTR_IP` |
-| A | `www` | `YOUR_VULTR_IP` |
+| Type | Name  | Value           |
+| ---- | ----- | --------------- |
+| A    | `@`   | `YOUR_VULTR_IP` |
+| A    | `www` | `YOUR_VULTR_IP` |
 
 **Cloudflare:** turn off proxy (grey cloud) the first time you run Certbot, or use Cloudflare SSL separately.
 

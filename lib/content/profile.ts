@@ -3,5 +3,5 @@ export const profile = {
   badge: "Classified dossier",
   role: "Full-stack · Spring & Next.js",
   years: "FPT Software · since 2022",
-  note: "Optional photo at public/avatar.png",
+  note: "Add portrait: public/images/avatar/agent-portrait.png",
 };

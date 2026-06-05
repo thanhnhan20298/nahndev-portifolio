@@ -1,10 +1,6 @@
-export type ExperienceArc = {
-  arc: string;
-  title: string;
-  period: string;
-  role: string;
-  bullets: string[];
-};
+import type { ExperienceArc } from "./types";
+
+export type { ExperienceArc } from "./types";
 
 export const experience: ExperienceArc[] = [
   {

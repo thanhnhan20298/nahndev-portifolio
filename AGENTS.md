@@ -1,6 +1,6 @@
 # AGENTS
 
-Manga portfolio — spec: `doc/document.md` · architecture: `doc/ARCHITECTURE.md` · deploy: `doc/DEPLOY-VPS.md`.
+Interactive portfolio — **`doc/ARCHITECTURE.md`** is the source of truth for layout and conventions.
 
 ## Stack
 
@@ -8,24 +8,35 @@ Next.js 15, Tailwind 4, Framer Motion, GSAP ScrollTrigger, Three.js.
 
 ## Layout
 
-- `components/manga/layout/` — `MangaPortfolio`, nav, scroll orchestrator
-- `components/manga/sections/` + `registry.tsx` — page sections
-- `components/manga/ui/` — panels, bubbles, terminal (no business copy)
-- `components/manga/features/` — boot, hero 3D, radar, cursor/shoot, overload
-- `lib/content/` — **all copy & data**
-- `lib/motion/`, `lib/three/`, `lib/audio/`, `lib/effects/` — non-UI logic
-
-## Features
-
-- Intro: `features/boot/SystemIntro` (exported as `BootSequence`)
-- Hero: `features/hero/` — laptop particles, profile card, impact burst
-- Skills: `features/radar/` — ScrollTrigger pin, flow shader (`lib/three/radar-shaders.ts`)
-- Cursor: `features/cursor/AgentCrosshair` — aim, click shoot, bullet marks (`lib/effects/gunfire-vfx.ts`)
-- Easter egg: `features/overload/SystemOverload`
+```
+components/layout/     PortfolioPage, SiteNav, SectionShell, chapters
+components/sections/   registry.tsx maps sectionId → component
+components/ui/         Reusable primitives (no business copy)
+components/features/   boot, hero, radar, cursor, overload
+lib/content/           All copy, types, assets, adventure chapters
+lib/config/            siteNavItems (derived from adventure.ts)
+lib/motion/            GSAP + scroll tokens
+```
 
 ## Rules
 
+- **No `lib/data/`** — only `lib/content/`.
+- **Nav** — use `siteNavItems` from `lib/config/navigation.ts`; do not hardcode links in `SiteNav`.
+- **Types** — `lib/content/types.ts`; re-export from domain files.
 - Theme: black + red, spy/agent tactical. **No** One Piece / wanted poster IP.
-- Scroll: `lib/motion/scroll-setup.ts` — no layout-breaking pin on chapter titles.
-- `MangaGsapProvider` toggles GSAP after boot.
-- `prefers-reduced-motion`: skip intro / 3D / heavy GSAP.
+- CSS: `app/styles/` split by domain; `manga-*` = global shell tokens.
+- `GsapProvider` enables motion after boot; respect `prefers-reduced-motion`.
+
+## Features map
+
+| Feature             | Path                               |
+| ------------------- | ---------------------------------- |
+| Boot intro          | `features/boot/SystemIntro`        |
+| Hero 3D             | `features/hero/`                   |
+| Skills radar        | `features/radar/`                  |
+| Crosshair / shoot   | `features/cursor/AgentCrosshair`   |
+| Overload easter egg | `features/overload/SystemOverload` |
+
+## Commands
+
+`npm run check` before PR — lint + typecheck.

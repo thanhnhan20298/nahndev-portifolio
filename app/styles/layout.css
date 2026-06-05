@@ -1,0 +1,261 @@
+.site-page {
+  min-height: 100vh;
+  overflow-x: clip;
+  background: var(--paper);
+}
+
+.site-page__content {
+  transition: opacity 0.35s ease;
+}
+
+.site-nav {
+  position: relative;
+  min-height: var(--nav-h);
+  background: var(--panel-raised);
+  color: var(--ink);
+  border-bottom: 3px solid var(--border-strong);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.45);
+}
+
+.site-scroll-progress {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 3px;
+  background: rgba(10, 10, 10, 0.08);
+  overflow: hidden;
+}
+
+.site-scroll-progress__fill {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left center;
+  will-change: transform;
+}
+
+.site-chapter-band {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.chapter-impact-flash {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% 50%, var(--accent-soft), transparent 70%);
+}
+
+.site-scroll-section {
+  position: relative;
+  isolation: isolate;
+}
+
+.showcase-impact-burst {
+  position: absolute;
+  inset: -20% -15%;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.35;
+  transform-origin: center center;
+}
+
+[data-showcase-scene] {
+  min-height: 280px;
+}
+
+.site-nav__brand {
+  font-family: var(--font-body), system-ui, sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: lowercase;
+  color: var(--ink);
+  text-shadow: none;
+  -webkit-text-stroke: 0;
+}
+
+.site-nav__brand strong {
+  font-weight: 800;
+  color: var(--accent);
+}
+
+.screentone {
+  position: relative;
+  background-color: var(--panel);
+  background-image: var(--screentone);
+  background-size: 5px 5px;
+  transition:
+    background-color 0.12s ease,
+    background-image 0.12s ease,
+    outline-color 0.12s ease;
+}
+
+.screentone-active {
+  background-color: var(--panel);
+  background-image: radial-gradient(circle, var(--accent) 0.85px, transparent 0.85px);
+  background-size: 4px 4px;
+}
+
+.project-card__panel {
+  transition:
+    box-shadow 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.project-card__panel--featured {
+  border-left: 3px solid var(--accent);
+  padding-left: calc(1.25rem - 3px);
+}
+
+@media (min-width: 768px) {
+  .project-card__panel--featured {
+    padding-left: calc(1.5rem - 3px);
+  }
+}
+
+.project-card:hover .project-card__panel,
+.project-card:focus-visible .project-card__panel {
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 35%, transparent);
+}
+
+.project-card__cta {
+  transition: letter-spacing 0.15s ease;
+}
+
+.project-card:hover .project-card__cta {
+  letter-spacing: 0.04em;
+}
+
+.sword-slash__svg {
+  overflow: visible;
+}
+
+.sword-slash__svg--flip {
+  transform: scaleX(-1) rotate(8deg);
+}
+
+.sword-slash__core {
+  filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.25));
+}
+
+.sword-slash__trail {
+  opacity: 0.88;
+}
+
+.onomatopoeia--action {
+  color: var(--accent);
+  opacity: 0.28;
+}
+
+.ink-border {
+  border: 2px solid var(--border-strong);
+  box-shadow: var(--shadow-panel);
+}
+
+.ink-border-thin {
+  border: 1px solid var(--border-subtle);
+}
+
+/* Panel / thẻ — viền nhẹ, không shadow cứng */
+.panel-soft {
+  border: 1px solid var(--border-subtle);
+  background: var(--panel);
+  border-radius: 2px;
+}
+
+.skill-row {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.4rem;
+  padding: 0.6rem 0.7rem;
+  background: var(--panel);
+  border: 1px solid var(--border-subtle);
+  border-radius: 2px;
+}
+
+.skill-row__name {
+  display: block;
+  width: 100%;
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.3;
+  word-break: break-word;
+}
+
+.skill-row__badge {
+  display: inline-block;
+  max-width: 100%;
+  padding: 0.15rem 0.45rem;
+  font-family: var(--font-body), system-ui, sans-serif;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+  text-transform: uppercase;
+  border-radius: 2px;
+}
+
+.bg-panel {
+  background-color: var(--panel);
+}
+
+.site-panel-overlap {
+  position: relative;
+  z-index: 1;
+}
+
+@media (min-width: 1280px) {
+  .site-panel-overlap--lift {
+    z-index: 2;
+  }
+}
+
+.site-section-head {
+  border-left: 5px solid var(--accent);
+  padding-left: 1rem;
+}
+
+.site-chapter-arc {
+  font-family: var(--font-display), system-ui, sans-serif;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+}
+
+.site-chapter-log {
+  color: var(--muted);
+}
+
+.site-story-beat {
+  color: var(--muted);
+  font-style: italic;
+}
+
+.story-lead {
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.55;
+  color: var(--ink);
+}
+
+@media (min-width: 768px) {
+  .story-lead {
+    font-size: 1.2rem;
+  }
+}
+
+.story-sign {
+  text-align: right;
+  font-size: 0.8rem;
+  font-style: italic;
+  line-height: 1.5;
+  color: var(--muted);
+}

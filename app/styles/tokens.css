@@ -1,0 +1,58 @@
+/* Design tokens — black + red tactical theme */
+:root {
+  --paper: #070707;
+  --panel: #111111;
+  --panel-raised: #1a1a1a;
+  --ink: #f2ece8;
+  --figure: #0a0a0a;
+  --muted: rgba(242, 236, 232, 0.58);
+  --muted-label: rgba(242, 236, 232, 0.42);
+  --sea: #4a2020;
+  --gold: #c43c3c;
+  --accent: #e11924;
+  --accent-hot: #ff2430;
+  --accent-dark: #7a0f14;
+  --accent-soft: rgba(225, 25, 36, 0.16);
+  --border-subtle: rgba(225, 25, 36, 0.28);
+  --border-strong: #e11924;
+  --slash-1: #e11924;
+  --slash-2: #ff2430;
+  --slash-3: #ff6b5a;
+  --slash-core: #f2ece8;
+  --screentone: radial-gradient(circle, rgba(225, 25, 36, 0.4) 0.85px, transparent 0.85px);
+  --shadow-panel: 4px 4px 0 rgba(225, 25, 36, 0.22);
+  --nav-h: 3.25rem;
+}
+
+html {
+  scroll-behavior: auto;
+  scroll-padding-top: calc(var(--nav-h) + 1rem);
+  overflow-anchor: auto;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body), system-ui, sans-serif;
+}
+
+.font-display {
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  line-height: 1.05;
+}
+
+.font-mono {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-weight: 500;
+}
+
+/* Uppercase labels — body font, not mono at 10px */
+.font-label {
+  font-family: var(--font-body), system-ui, sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}

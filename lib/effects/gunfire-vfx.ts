@@ -49,7 +49,11 @@ export function spawnBulletHole(host: HTMLElement, pageX: number, pageY: number)
 
   gsap
     .timeline()
-    .fromTo(hole, { scale: 0.4, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.05, ease: "power3.out" })
+    .fromTo(
+      hole,
+      { scale: 0.4, opacity: 0 },
+      { scale: 1, opacity: 1, duration: 0.05, ease: "power3.out" },
+    )
     .fromTo(core, { scale: 1.8 }, { scale: 1, duration: 0.08, ease: "power2.out" }, 0)
     .to(hole, { opacity: 0.92, duration: 0.04 }, 0.06)
     .to(hole, { opacity: 0, duration: fadeSec, ease: "power1.in", delay: holdSec })

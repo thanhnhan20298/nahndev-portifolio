@@ -1,3 +1,5 @@
+export * from "./types";
+export * from "./assets";
 export * from "./about";
 export * from "./adventure";
 export * from "./architecture-radar";

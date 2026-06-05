@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { ProjectPageEnter } from "@/components/manga/projects/ProjectPageEnter";
+import { ProjectPageEnter } from "@/components/projects/ProjectPageEnter";
 import { getProject, projects } from "@/lib/content/projects";
 
 type Props = { params: Promise<{ slug: string }> };

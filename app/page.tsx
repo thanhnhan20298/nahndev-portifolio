@@ -1,5 +1,5 @@
-import { MangaPortfolio } from "@/components/manga/layout/MangaPortfolio";
+import { PortfolioPage } from "@/components/layout/PortfolioPage";
 
 export default function Home() {
-  return <MangaPortfolio />;
+  return <PortfolioPage />;
 }

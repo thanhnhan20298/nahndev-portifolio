@@ -1,12 +1,8 @@
 /** Architecture map — radar nodes (angle rad, radius 0–1) */
 
-export type ArchNode = {
-  id: string;
-  label: string;
-  angle: number;
-  radius: number;
-  tier: "core" | "service" | "data" | "ops";
-};
+import type { ArchNode } from "./types";
+
+export type { ArchNode } from "./types";
 
 export const archNodes: ArchNode[] = [
   { id: "agent", label: "nahndev", angle: 0, radius: 0, tier: "core" },

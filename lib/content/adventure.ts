@@ -1,28 +1,8 @@
-/** Portfolio chapters — navigation labels (spy/agent tactical, no franchise IP) */
+/** Portfolio chapters — section order, nav labels, chapter dividers */
 
-export const bootLines = [
-  "LOADING PORTFOLIO...",
-  "MOTION SYSTEM: OK",
-  "PROFILE CARD: READY",
-  "SCROLL: ARMED",
-];
+import type { PortfolioChapter } from "./types";
 
-export type PortfolioSectionId =
-  | "about"
-  | "skills"
-  | "showcase"
-  | "experience"
-  | "projects"
-  | "contact";
-
-export type PortfolioChapter = {
-  chapter: string;
-  arc: string;
-  title: string;
-  log: string;
-  sectionId: PortfolioSectionId;
-  beat: string;
-};
+export type { PortfolioChapter, PortfolioSectionId } from "./types";
 
 export const portfolioChapters: PortfolioChapter[] = [
   {
@@ -81,5 +61,4 @@ export const heroChapter = {
   log: "Boot",
 };
 
-export const footerMotto =
-  "nahndev · FPT Software · interactive manga portfolio — black & red";
+export const footerMotto = "nahndev · FPT Software · interactive portfolio — black & red";

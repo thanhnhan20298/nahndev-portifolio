@@ -1,6 +1,6 @@
 import { gsap, registerGsapPlugins, ScrollTrigger } from "./gsap-register";
 
-export function setupMangaScrollEffects(root: HTMLElement) {
+export function setupScrollEffects(root: HTMLElement) {
   registerGsapPlugins();
 
   const progressBar = root.querySelector<HTMLElement>("[data-scroll-progress-fill]");
@@ -32,7 +32,7 @@ export function setupMangaScrollEffects(root: HTMLElement) {
     });
   }
 
-  const story = root.querySelector(".manga-story-block");
+  const story = root.querySelector(".site-story-block");
   if (story) {
     gsap.from(story, {
       y: 24,
@@ -44,7 +44,7 @@ export function setupMangaScrollEffects(root: HTMLElement) {
     });
   }
 
-  gsap.utils.toArray<HTMLElement>(".manga-chapter-band").forEach((band) => {
+  gsap.utils.toArray<HTMLElement>(".site-chapter-band").forEach((band) => {
     const inner = band.querySelector("[data-chapter-inner]");
     const flash = band.querySelector(".chapter-impact-flash");
 
@@ -79,8 +79,8 @@ export function setupMangaScrollEffects(root: HTMLElement) {
     }
   });
 
-  gsap.utils.toArray<HTMLElement>(".manga-scroll-section").forEach((section) => {
-    const head = section.querySelector(".manga-section-head");
+  gsap.utils.toArray<HTMLElement>(".site-scroll-section").forEach((section) => {
+    const head = section.querySelector(".site-section-head");
     if (head) {
       gsap.from(head, {
         y: 32,
@@ -118,7 +118,7 @@ export function setupMangaScrollEffects(root: HTMLElement) {
     });
   }
 
-  const footer = root.querySelector(".manga-page-footer");
+  const footer = root.querySelector(".site-page-footer");
   if (footer) {
     gsap.from(footer, {
       opacity: 0,

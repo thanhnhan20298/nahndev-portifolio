@@ -1,10 +1,7 @@
 /** Internal FPT Software awards — MVT/VP naming convention, not a VP job title */
-export type Award = {
-  year: string;
-  short: string;
-  name: string;
-  note: string;
-};
+import type { Award } from "./types";
+
+export type { Award } from "./types";
 
 export const fptAwards: Award[] = [
   {

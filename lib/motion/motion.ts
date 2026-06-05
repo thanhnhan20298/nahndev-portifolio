@@ -46,7 +46,7 @@ export const PANEL_3D_VISIBLE = {
 export const TITLE_STAMP_3D_HIDDEN = { opacity: 0, rotateX: 22, z: -40, scale: 0.96 };
 export const TITLE_STAMP_3D_SHOW = { opacity: 1, rotateX: 0, z: 0, scale: 1 };
 
-export const WANTED_SLAM_3D_INITIAL = {
+export const DOSSIER_SLAM_3D_INITIAL = {
   scale: 1.14,
   y: -20,
   rotateX: -28,
@@ -93,7 +93,7 @@ export const TITLE_STAMP_SPRING = {
   damping: 24,
 };
 
-export const WANTED_SLAM_SPRING = {
+export const DOSSIER_SLAM_SPRING = {
   type: "spring" as const,
   stiffness: 480,
   damping: 22,

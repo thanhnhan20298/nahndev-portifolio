@@ -1,15 +1,6 @@
-export type Project = {
-  slug: string;
-  title: string;
-  description: string;
-  featured: boolean;
-  github: string;
-  tags: string[];
-  year: string;
-  role: string;
-  highlights: string[];
-  pipeline?: string[];
-};
+import type { Project } from "./types";
+
+export type { Project } from "./types";
 
 export const projects: Project[] = [
   {
@@ -33,10 +24,7 @@ export const projects: Project[] = [
     tags: ["Java 21", "Spring Boot 3", "Binance", "WebSocket", "Docker"],
     year: "2025",
     role: "Backend · Side project",
-    highlights: [
-      "WS kline + EmaCrossStrategy + RiskManager",
-      "Docker Compose · Postgres · Flyway",
-    ],
+    highlights: ["WS kline + EmaCrossStrategy + RiskManager", "Docker Compose · Postgres · Flyway"],
     pipeline: [
       "Warmup + WS kline (Binance Demo)",
       "EmaCrossStrategy",
