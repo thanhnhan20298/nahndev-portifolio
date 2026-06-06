@@ -3,6 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import { useReducedMotion } from "framer-motion";
 import { GsapProvider } from "@/context";
+import { ResumeProvider } from "@/context/ResumeContext";
+import { ResumeModal } from "@/components/resume/ResumeModal";
 import { ScrollOrchestrator } from "./ScrollOrchestrator";
 import { BootSequence } from "./BootSequence";
 import { ChapterDivider } from "./ChapterDivider";
@@ -41,9 +43,11 @@ export function PortfolioPage() {
   }, [booted]);
 
   return (
-    <main className="site-page bg-[var(--paper)]">
-      {!booted && <BootSequence onDone={() => setBooted(true)} />}
-      <GsapProvider enabled={gsapOn}>
+    <ResumeProvider>
+      <main className="site-page bg-[var(--paper)]">
+        {!booted && <BootSequence onDone={() => setBooted(true)} />}
+        <ResumeModal />
+        <GsapProvider enabled={gsapOn}>
         <ScrollOrchestrator enabled={gsapOn} root={contentRef} />
         <div
           ref={contentRef}
@@ -80,7 +84,8 @@ export function PortfolioPage() {
             <p className="mt-2 mx-auto max-w-md text-[10px] leading-relaxed">{footerMotto}</p>
           </footer>
         </div>
-      </GsapProvider>
-    </main>
+        </GsapProvider>
+      </main>
+    </ResumeProvider>
   );
 }

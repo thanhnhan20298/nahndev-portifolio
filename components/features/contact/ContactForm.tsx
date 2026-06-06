@@ -2,130 +2,93 @@
 
 import { useState, type FormEvent } from "react";
 import { contact } from "@/lib/content/contact";
-import { cn } from "@/lib/utils/cn";
-
-type Status = "idle" | "sending" | "sent" | "error";
 
 export function ContactForm() {
-  const [status, setStatus] = useState<Status>("idle");
-  const [error, setError] = useState("");
+  const [hint, setHint] = useState("");
 
-  async function onSubmit(e: FormEvent<HTMLFormElement>) {
+  function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setStatus("sending");
-    setError("");
-
     const form = e.currentTarget;
     const data = new FormData(form);
-    const payload = {
-      name: String(data.get("name") ?? ""),
-      email: String(data.get("email") ?? ""),
-      message: String(data.get("message") ?? ""),
-      botcheck: String(data.get("botcheck") ?? ""),
-    };
+    const name = String(data.get("name") ?? "").trim();
+    const email = String(data.get("email") ?? "").trim();
+    const message = String(data.get("message") ?? "").trim();
 
-    try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
-      const json = (await res.json()) as {
-        ok?: boolean;
-        fallback?: boolean;
-        mailto?: string;
-        error?: string;
-      };
-
-      if (json.fallback && json.mailto) {
-        window.location.href = json.mailto;
-        setStatus("idle");
-        return;
-      }
-
-      if (!res.ok || !json.ok) {
-        setError(json.error ?? "Could not send. Try email directly.");
-        setStatus("error");
-        return;
-      }
-
-      form.reset();
-      setStatus("sent");
-    } catch {
-      setError("Network error. Email me directly.");
-      setStatus("error");
+    if (!name || !email || !message) {
+      setHint("Please fill in name, email, and message.");
+      return;
     }
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      setHint("Please enter a valid email address.");
+      return;
+    }
+
+    const subject = encodeURIComponent(`Portfolio contact from ${name}`);
+    const body = encodeURIComponent(
+      `Hi nahndev,\n\n${message}\n\n— ${name}\nReply to: ${email}`,
+    );
+
+    setHint("Opening your email app… Press Send there to deliver the message to me.");
+    window.location.href = `mailto:${contact.email}?subject=${subject}&body=${body}`;
   }
 
   return (
-    <form className="contact-form mt-8 space-y-4" onSubmit={onSubmit} noValidate>
-      <div className="grid gap-4 sm:grid-cols-2">
+    <div className="contact-form-wrap mt-8">
+      <p className="contact-form__help text-sm leading-relaxed site-text-dim">{contact.formHelp}</p>
+
+      <form className="contact-form mt-4 space-y-4" onSubmit={onSubmit} noValidate>
+        <div className="grid gap-4 sm:grid-cols-2">
+          <label className="contact-form__field block">
+            <span className="font-label text-[10px] text-muted-label">Your name</span>
+            <input
+              name="name"
+              type="text"
+              required
+              autoComplete="name"
+              placeholder="e.g. Alex"
+              className="contact-form__input mt-1 w-full"
+            />
+          </label>
+          <label className="contact-form__field block">
+            <span className="font-label text-[10px] text-muted-label">Your email</span>
+            <input
+              name="email"
+              type="email"
+              required
+              autoComplete="email"
+              placeholder="so I can reply"
+              className="contact-form__input mt-1 w-full"
+            />
+          </label>
+        </div>
         <label className="contact-form__field block">
-          <span className="font-label text-[10px] text-muted-label">Name</span>
-          <input
-            name="name"
-            type="text"
+          <span className="font-label text-[10px] text-muted-label">Message</span>
+          <textarea
+            name="message"
             required
-            autoComplete="name"
-            className="contact-form__input mt-1 w-full"
+            rows={4}
+            placeholder="What would you like to discuss?"
+            className="contact-form__input contact-form__textarea mt-1 w-full resize-y"
           />
         </label>
-        <label className="contact-form__field block">
-          <span className="font-label text-[10px] text-muted-label">Email</span>
-          <input
-            name="email"
-            type="email"
-            required
-            autoComplete="email"
-            className="contact-form__input mt-1 w-full"
-          />
-        </label>
-      </div>
-      <label className="contact-form__field block">
-        <span className="font-label text-[10px] text-muted-label">Message</span>
-        <textarea
-          name="message"
-          required
-          rows={4}
-          className="contact-form__input contact-form__textarea mt-1 w-full resize-y"
-        />
-      </label>
-      <input
-        type="text"
-        name="botcheck"
-        tabIndex={-1}
-        autoComplete="off"
-        className="absolute h-0 w-0 opacity-0"
-        aria-hidden
-      />
-      <div className="flex flex-wrap items-center gap-3">
-        <button
-          type="submit"
-          disabled={status === "sending"}
-          className={cn(
-            "site-cta px-6 py-3 text-sm font-black uppercase ink-border",
-            status === "sending" && "opacity-60",
-          )}
-        >
-          {status === "sending" ? "Sending…" : "Send message"}
-        </button>
-        <a
-          href={`mailto:${contact.email}`}
-          className="text-xs font-bold underline decoration-2 underline-offset-4 hover:text-[var(--accent)]"
-        >
-          or {contact.email}
-        </a>
-      </div>
-      {status === "sent" && (
-        <p className="text-sm font-bold text-[var(--accent)]" role="status">
-          Message sent — I&apos;ll reply soon.
-        </p>
-      )}
-      {status === "error" && error && (
-        <p className="text-sm font-bold text-[var(--accent)]" role="alert">
-          {error}
-        </p>
-      )}
-    </form>
+        <div className="flex flex-wrap items-center gap-3">
+          <button
+            type="submit"
+            className="site-cta px-6 py-3 text-sm font-black uppercase ink-border"
+          >
+            Send via email app
+          </button>
+          <span className="text-xs site-text-dim">
+            To: <strong className="text-[var(--ink)]">{contact.email}</strong>
+          </span>
+        </div>
+        {hint && (
+          <p className="contact-form__hint text-sm font-bold text-[var(--accent)]" role="status">
+            {hint}
+          </p>
+        )}
+      </form>
+    </div>
   );
 }

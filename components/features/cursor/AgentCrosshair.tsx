@@ -13,7 +13,8 @@ type Props = { enabled?: boolean };
 
 const LOCK_SEL = "a, button, .site-cta, .project-card, .site-nav-link, [data-lock-target]";
 
-const SKIP_SHOOT_SEL = ".overload-trigger, .overload-blackout, .system-intro";
+const SKIP_SHOOT_SEL =
+  ".overload-trigger, .overload-blackout, .system-intro, .contact-form, input, textarea, select, button, label, a";
 
 function useFinePointer() {
   const [ok, setOk] = useState(false);

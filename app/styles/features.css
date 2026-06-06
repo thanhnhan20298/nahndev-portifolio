@@ -37,12 +37,24 @@ body.agent-cursor-active * {
   user-select: none;
 }
 
-/* Terminal vẫn cho copy khi cần */
+/* Terminal + form vẫn tương tác bình thường */
 body.agent-cursor-active .site-terminal,
-body.agent-cursor-active .site-terminal * {
+body.agent-cursor-active .site-terminal *,
+body.agent-cursor-active .contact-form,
+body.agent-cursor-active .contact-form * {
   -webkit-user-select: text;
   user-select: text;
+}
+
+body.agent-cursor-active .contact-form__input,
+body.agent-cursor-active .contact-form__textarea,
+body.agent-cursor-active .site-terminal {
   cursor: text !important;
+}
+
+body.agent-cursor-active .contact-form button,
+body.agent-cursor-active .contact-form a {
+  cursor: pointer !important;
 }
 
 .agent-shot-marks {
@@ -980,12 +992,21 @@ body.agent-cursor-active .site-terminal * {
   min-height: 12rem;
 }
 
+.contact-form {
+  position: relative;
+  z-index: 2;
+}
+
 .contact-form__input {
   border: 2px solid var(--border-strong);
   background: var(--panel);
   padding: 0.65rem 0.75rem;
   font-size: 0.875rem;
   color: var(--ink);
+  pointer-events: auto;
+  cursor: text;
+  -webkit-user-select: text;
+  user-select: text;
 }
 
 .contact-form__input:focus {

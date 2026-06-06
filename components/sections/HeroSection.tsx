@@ -2,8 +2,8 @@
 
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
-import Link from "next/link";
 import { useReducedMotion } from "framer-motion";
+import { ResumeOpenButton } from "@/components/resume/ResumeOpenButton";
 import { Onomatopoeia } from "@/components/ui/Onomatopoeia";
 import { SpeechBubble } from "@/components/ui/SpeechBubble";
 import { InkPanel } from "@/components/ui/InkPanel";
@@ -16,7 +16,6 @@ import { HeroBackdrop } from "@/components/features/hero/HeroBackdrop";
 import { HeroProfileCard } from "@/components/features/hero/HeroProfileCard";
 import { about } from "@/lib/content/about";
 import { heroChapter } from "@/lib/content/adventure";
-import { contact } from "@/lib/content/contact";
 import { heroHQ } from "@/lib/content/hero";
 import { story } from "@/lib/content/story";
 
@@ -95,12 +94,9 @@ export function HeroSection({ booted }: Props) {
               {about.location}
             </span>
             <span className="site-arc-badge">{heroChapter.arc}</span>
-            <Link
-              href={contact.resumePath}
-              className="ink-border-thin bg-panel px-3 py-1 text-xs font-bold hover:text-[var(--accent)]"
-            >
+            <ResumeOpenButton className="ink-border-thin bg-panel px-3 py-1 text-xs font-bold hover:text-[var(--accent)]">
               Resume ↓
-            </Link>
+            </ResumeOpenButton>
           </div>
         </PanelSlide>
 

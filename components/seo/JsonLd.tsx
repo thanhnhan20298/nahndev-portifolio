@@ -11,6 +11,7 @@ export function JsonLd() {
     description: about.summary,
     url: siteConfig.url,
     email: contact.email,
+    telephone: contact.phoneTel,
     address: {
       "@type": "PostalAddress",
       addressCountry: about.location,

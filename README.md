@@ -65,13 +65,13 @@ npm start
 
 Use PM2 or your host's process manager. Set `PORT` if the default `3000` is taken.
 
-Copy `.env.example` → `.env.local` for `NEXT_PUBLIC_SITE_URL` and optional `WEB3FORMS_ACCESS_KEY` (contact form).
+Copy `.env.example` → `.env.local` for `NEXT_PUBLIC_SITE_URL`.
 
 ## Extras
 
-- **Resume:** `/resume` — print-friendly CV (Save as PDF from browser).
+- **Resume:** opens in a modal (✕ Close or Esc) — does not leave the page. `/resume` for direct link. PDF is vector text, not a screenshot.
 - **Keyboard:** `1`–`6` jump sections, `H` home, `M` mute sound.
-- **Contact:** form with Web3Forms fallback to mailto.
+- **Contact:** form opens the visitor's email app → they send to your Gmail.
 
 ## Scripts
 
