@@ -1,6 +1,8 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { useReducedMotion } from "framer-motion";
 import { Onomatopoeia } from "@/components/ui/Onomatopoeia";
 import { SpeechBubble } from "@/components/ui/SpeechBubble";
@@ -11,12 +13,20 @@ import { StaggeredTitle } from "@/components/ui/StaggeredTitle";
 import { PanelSlide } from "@/components/ui/PanelSlide";
 import { HeroImpactBurst } from "@/components/features/hero/HeroImpactBurst";
 import { HeroBackdrop } from "@/components/features/hero/HeroBackdrop";
-import { HeroAgentHQ } from "@/components/features/hero/HeroAgentHQ";
 import { HeroProfileCard } from "@/components/features/hero/HeroProfileCard";
 import { about } from "@/lib/content/about";
 import { heroChapter } from "@/lib/content/adventure";
+import { contact } from "@/lib/content/contact";
 import { heroHQ } from "@/lib/content/hero";
 import { story } from "@/lib/content/story";
+
+const HeroAgentHQ = dynamic(
+  () => import("@/components/features/hero/HeroAgentHQ").then((m) => m.HeroAgentHQ),
+  {
+    ssr: false,
+    loading: () => <div className="hero-agent-stage hero-agent-stage--fallback" aria-hidden />,
+  },
+);
 
 const stats = [
   { k: "Company", v: "FPT Software" },
@@ -85,6 +95,12 @@ export function HeroSection({ booted }: Props) {
               {about.location}
             </span>
             <span className="site-arc-badge">{heroChapter.arc}</span>
+            <Link
+              href={contact.resumePath}
+              className="ink-border-thin bg-panel px-3 py-1 text-xs font-bold hover:text-[var(--accent)]"
+            >
+              Resume ↓
+            </Link>
           </div>
         </PanelSlide>
 

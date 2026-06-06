@@ -1,8 +1,10 @@
 "use client";
 
+import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 import { PAGE_ENTER, SNAP_EASE } from "@/lib/motion/motion";
 import type { Project } from "@/lib/content/projects";
+import { projectArtSrc } from "@/lib/content/assets";
 import { BackToPortfolioLink } from "./BackToPortfolioLink";
 import { InkPanel } from "@/components/ui/InkPanel";
 
@@ -12,6 +14,7 @@ type Props = {
 
 export function ProjectPageEnter({ project }: Props) {
   const reduced = useReducedMotion();
+  const cover = projectArtSrc(project.slug);
 
   return (
     <main className="min-h-screen bg-[var(--paper)]">
@@ -22,6 +25,19 @@ export function ProjectPageEnter({ project }: Props) {
         transition={{ duration: reduced ? 0 : PAGE_ENTER.duration, ease: SNAP_EASE }}
       >
         <BackToPortfolioLink />
+
+        {cover && (
+          <div className="project-page-cover relative mt-8 aspect-[16/9] w-full overflow-hidden ink-border">
+            <Image
+              src={cover}
+              alt={`${project.title} cover`}
+              fill
+              sizes="(max-width: 768px) 100vw, 672px"
+              className="object-cover"
+              priority
+            />
+          </div>
+        )}
 
         <header className="mt-8">
           <p className="font-label text-xs text-[var(--accent)]">
@@ -69,14 +85,24 @@ export function ProjectPageEnter({ project }: Props) {
           ))}
         </ul>
 
-        <a
-          href={project.github}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="site-cta mt-8 inline-block px-5 py-2 text-sm font-bold"
-        >
-          GitHub →
-        </a>
+        <div className="mt-8 flex flex-wrap gap-3">
+          <a
+            href={project.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="site-cta inline-block px-5 py-2 text-sm font-bold"
+          >
+            GitHub →
+          </a>
+          {project.demoUrl && (
+            <a
+              href={project.demoUrl}
+              className="ink-border-thin inline-block bg-panel px-5 py-2 text-sm font-bold"
+            >
+              Live demo →
+            </a>
+          )}
+        </div>
       </motion.div>
     </main>
   );

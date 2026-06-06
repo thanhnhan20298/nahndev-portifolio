@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Be_Vietnam_Pro, JetBrains_Mono, Noto_Sans_JP, Oswald } from "next/font/google";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { siteConfig } from "@/lib/config/site";
 import "./globals.css";
 
 const body = Be_Vietnam_Pro({
@@ -32,8 +34,26 @@ const mono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "nahndev — Interactive Manga Portfolio",
-  description: "Interactive digital manga portfolio — screentone, panel slides, impact slash.",
+  metadataBase: new URL(siteConfig.url),
+  title: {
+    default: siteConfig.title,
+    template: `%s — ${siteConfig.name}`,
+  },
+  description: siteConfig.description,
+  openGraph: {
+    type: "website",
+    locale: siteConfig.locale,
+    url: siteConfig.url,
+    siteName: siteConfig.name,
+    title: siteConfig.title,
+    description: siteConfig.description,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteConfig.title,
+    description: siteConfig.description,
+  },
+  robots: { index: true, follow: true },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -42,7 +62,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       lang="en"
       className={`${body.variable} ${display.variable} ${jp.variable} ${mono.variable}`}
     >
-      <body className="antialiased">{children}</body>
+      <body className="antialiased">
+        <a href="#top" className="skip-link">
+          Skip to content
+        </a>
+        <JsonLd />
+        {children}
+      </body>
     </html>
   );
 }

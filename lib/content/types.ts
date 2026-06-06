@@ -28,6 +28,8 @@ export type Project = {
   role: string;
   highlights: string[];
   pipeline?: string[];
+  /** Live demo URL (optional) */
+  demoUrl?: string;
 };
 
 export type ExperienceArc = {

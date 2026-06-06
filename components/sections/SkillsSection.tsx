@@ -1,9 +1,14 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { useRef } from "react";
 import Link from "next/link";
 import { useReducedMotion } from "framer-motion";
-import { RadarArchitecture } from "@/components/features/radar/RadarArchitecture";
+
+const RadarArchitecture = dynamic(
+  () => import("@/components/features/radar/RadarArchitecture").then((m) => m.RadarArchitecture),
+  { ssr: false },
+);
 import { SectionBackdrop } from "@/components/ui/SectionBackdrop";
 import { archNodes, radarSection } from "@/lib/content/architecture-radar";
 import { sectionBackdropSrc } from "@/lib/content/assets";

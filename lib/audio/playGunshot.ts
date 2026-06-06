@@ -1,6 +1,8 @@
+import { isSoundEnabled } from "./sound-settings";
+
 /** Short gunshot — call after user pointerdown */
 export function playGunshot() {
-  if (typeof window === "undefined") return;
+  if (typeof window === "undefined" || !isSoundEnabled()) return;
   try {
     const ctx = new AudioContext();
     const t0 = ctx.currentTime;

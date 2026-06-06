@@ -1,0 +1,10 @@
+@media print {
+  body {
+    background: #fff !important;
+    color: #111 !important;
+  }
+
+  .resume-page__toolbar {
+    display: none !important;
+  }
+}

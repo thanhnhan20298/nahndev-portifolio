@@ -65,14 +65,22 @@ npm start
 
 Use PM2 or your host's process manager. Set `PORT` if the default `3000` is taken.
 
+Copy `.env.example` → `.env.local` for `NEXT_PUBLIC_SITE_URL` and optional `WEB3FORMS_ACCESS_KEY` (contact form).
+
+## Extras
+
+- **Resume:** `/resume` — print-friendly CV (Save as PDF from browser).
+- **Keyboard:** `1`–`6` jump sections, `H` home, `M` mute sound.
+- **Contact:** form with Web3Forms fallback to mailto.
+
 ## Scripts
 
-| Command                  | Purpose                          |
-| ------------------------ | -------------------------------- |
-| `npm run dev`            | Development server               |
-| `npm run build`          | Production build                 |
-| `npm run start`          | Run production server            |
-| `npm run lint`           | ESLint                           |
-| `npm run typecheck`      | TypeScript check                 |
-| `npm run check`          | lint + typecheck                 |
-| `npm run images:optimize`| PNG → WebP (dev; PNG not in git) |
+| Command                   | Purpose                          |
+| ------------------------- | -------------------------------- |
+| `npm run dev`             | Development server               |
+| `npm run build`           | Production build                 |
+| `npm run start`           | Run production server            |
+| `npm run lint`            | ESLint                           |
+| `npm run typecheck`       | TypeScript check                 |
+| `npm run check`           | lint + typecheck                 |
+| `npm run images:optimize` | PNG → WebP (dev; PNG not in git) |

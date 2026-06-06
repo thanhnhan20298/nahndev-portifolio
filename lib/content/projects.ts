@@ -12,7 +12,12 @@ export const projects: Project[] = [
     tags: ["Next.js", "JavaScript", "Framer Motion"],
     year: "2025",
     role: "Frontend",
-    highlights: ["Boot sequence + scroll panels", "Impact slash on project pages"],
+    highlights: [
+      "Boot sequence + scroll panels",
+      "Impact slash on project pages",
+      "Three.js hero + skills radar",
+    ],
+    demoUrl: "/",
   },
   {
     slug: "crypto-tools",

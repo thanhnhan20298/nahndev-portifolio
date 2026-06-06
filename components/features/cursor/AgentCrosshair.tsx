@@ -15,8 +15,21 @@ const LOCK_SEL = "a, button, .site-cta, .project-card, .site-nav-link, [data-loc
 
 const SKIP_SHOOT_SEL = ".overload-trigger, .overload-blackout, .system-intro";
 
+function useFinePointer() {
+  const [ok, setOk] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia("(pointer: fine) and (min-width: 769px)");
+    const sync = () => setOk(mq.matches);
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
+  }, []);
+  return ok;
+}
+
 export function AgentCrosshair({ enabled }: Props) {
   const reduced = useReducedMotion();
+  const finePointer = useFinePointer();
   const [portalReady, setPortalReady] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const marksRef = useRef<HTMLDivElement>(null);
@@ -281,7 +294,7 @@ export function AgentCrosshair({ enabled }: Props) {
     };
   }, [enabled, reduced]);
 
-  if (!enabled || reduced || !portalReady) return null;
+  if (!enabled || reduced || !portalReady || !finePointer) return null;
 
   return createPortal(
     <>

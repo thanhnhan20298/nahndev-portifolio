@@ -14,6 +14,7 @@ import { HeroSection } from "@/components/sections/HeroSection";
 import { portfolioSectionComponents } from "@/components/sections/registry";
 import { portfolioChapters, footerMotto } from "@/lib/content/adventure";
 import { cn } from "@/lib/utils/cn";
+import { useSectionKeyboard } from "@/hooks/useSectionKeyboard";
 import { consumeScrollToSection, scrollToSectionId } from "@/lib/navigation/scroll-to-section";
 
 export function PortfolioPage() {
@@ -21,6 +22,8 @@ export function PortfolioPage() {
   const contentRef = useRef<HTMLDivElement>(null);
   const reduced = useReducedMotion();
   const gsapOn = booted && !reduced;
+
+  useSectionKeyboard(gsapOn);
 
   useEffect(() => {
     if (!booted) return;

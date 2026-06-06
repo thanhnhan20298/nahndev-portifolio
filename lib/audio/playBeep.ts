@@ -1,6 +1,8 @@
+import { isSoundEnabled } from "./sound-settings";
+
 /** Short beep — only after user gesture */
 export function playAccessBeep() {
-  if (typeof window === "undefined") return;
+  if (typeof window === "undefined" || !isSoundEnabled()) return;
   try {
     const ctx = new AudioContext();
     const osc = ctx.createOscillator();
