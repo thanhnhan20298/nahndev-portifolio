@@ -1,6 +1,3 @@
-"use client";
-
-import { jsPDF } from "jspdf";
 import { about } from "@/lib/content/about";
 import { contact } from "@/lib/content/contact";
 import { experience } from "@/lib/content/experience";
@@ -12,7 +9,9 @@ const MARGIN = 18;
 const PAGE_W = 210;
 const CONTENT_W = PAGE_W - MARGIN * 2;
 
-function ensureSpace(pdf: jsPDF, y: number, need: number): number {
+type JsPDF = import("jspdf").jsPDF;
+
+function ensureSpace(pdf: JsPDF, y: number, need: number): number {
   const pageH = pdf.internal.pageSize.getHeight();
   if (y + need > pageH - MARGIN) {
     pdf.addPage();
@@ -21,7 +20,7 @@ function ensureSpace(pdf: jsPDF, y: number, need: number): number {
   return y;
 }
 
-function writeLines(pdf: jsPDF, lines: string[], x: number, y: number, lineHeight: number): number {
+function writeLines(pdf: JsPDF, lines: string[], x: number, y: number, lineHeight: number): number {
   for (const line of lines) {
     y = ensureSpace(pdf, y, lineHeight);
     pdf.text(line, x, y);
@@ -30,7 +29,7 @@ function writeLines(pdf: jsPDF, lines: string[], x: number, y: number, lineHeigh
   return y;
 }
 
-function sectionTitle(pdf: jsPDF, y: number, title: string): number {
+function sectionTitle(pdf: JsPDF, y: number, title: string): number {
   y = ensureSpace(pdf, y, 14);
   pdf.setDrawColor(225, 25, 36);
   pdf.setLineWidth(0.6);
@@ -43,7 +42,7 @@ function sectionTitle(pdf: jsPDF, y: number, title: string): number {
   return y + 6;
 }
 
-function bodyText(pdf: jsPDF, y: number, text: string, size = 10): number {
+function bodyText(pdf: JsPDF, y: number, text: string, size = 10): number {
   pdf.setFont("helvetica", "normal");
   pdf.setFontSize(size);
   pdf.setTextColor(20, 20, 20);
@@ -51,11 +50,12 @@ function bodyText(pdf: jsPDF, y: number, text: string, size = 10): number {
   return writeLines(pdf, lines, MARGIN, y, size * 0.45) + 2;
 }
 
-export function downloadResumePdf(filename = "nahndev-resume.pdf"): void {
+export async function downloadResumePdf(filename = "nahndev-resume.pdf"): Promise<void> {
   if (typeof window === "undefined") {
     throw new Error("PDF download is only available in the browser");
   }
 
+  const { jsPDF } = await import("jspdf");
   const pdf = new jsPDF({ unit: "mm", format: "a4" });
   let y = MARGIN;
 

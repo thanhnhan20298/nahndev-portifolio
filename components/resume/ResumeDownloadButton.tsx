@@ -1,21 +1,21 @@
 "use client";
 
 import { useState } from "react";
-import { downloadResumePdf } from "@/lib/resume/generate-pdf";
 import { cn } from "@/lib/utils/cn";
 
 export function ResumeDownloadButton() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  function onDownload() {
+  async function onDownload() {
     setLoading(true);
     setError("");
     try {
-      downloadResumePdf();
+      const { downloadResumePdf } = await import("@/lib/resume/generate-pdf");
+      await downloadResumePdf();
     } catch (err) {
       console.error("[resume-pdf]", err);
-      setError("Could not generate PDF. Try again or use /resume in Chrome.");
+      setError("Could not generate PDF. Try again.");
     } finally {
       setLoading(false);
     }

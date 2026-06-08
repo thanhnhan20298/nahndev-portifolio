@@ -9,8 +9,10 @@ export const experience: ExperienceArc[] = [
     period: "Early 2022 — present",
     role: "Developer · Spring Boot · Next.js / JavaScript",
     bullets: [
-      "Full-stack delivery: Java/Spring APIs, React/Next.js frontends",
-      "Client and internal product projects",
+      "Build and maintain REST APIs with Java 17+ and Spring Boot",
+      "Ship React / Next.js UIs integrated with backend services",
+      "Work in agile squads on client-facing and internal products",
+      "Code review, unit tests, and deployment support",
     ],
   },
   {
@@ -19,8 +21,8 @@ export const experience: ExperienceArc[] = [
     period: "Off hours",
     role: "Solo dev",
     bullets: [
-      "C-FAT (crypto-tools) — Binance Futures bot, Java 21 + Spring Boot 3",
-      "Manga portfolio — Next.js + Framer Motion + GSAP (this site)",
+      "C-FAT (crypto-tools) — Binance Futures bot: WS klines, EMA strategy, risk layer, Docker Compose",
+      "This portfolio — Next.js 15, GSAP scroll, Three.js hero, tactical manga UX",
     ],
   },
 ];

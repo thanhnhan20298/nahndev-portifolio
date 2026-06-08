@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Be_Vietnam_Pro, JetBrains_Mono, Noto_Sans_JP, Oswald } from "next/font/google";
+import { Plausible } from "@/components/analytics/Plausible";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { siteConfig } from "@/lib/config/site";
 import "./globals.css";
@@ -67,6 +68,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           Skip to content
         </a>
         <JsonLd />
+        <Plausible />
         {children}
       </body>
     </html>

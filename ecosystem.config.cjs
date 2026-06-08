@@ -1,16 +1,18 @@
-/** PM2 — set `cwd` to the app path on your server. */
+/** PM2 — portfolio on port 3002 (3000/8080/8081 often taken on shared VPS). */
+const PORT = process.env.PORT || "3002";
+
 module.exports = {
   apps: [
     {
       name: "nahndev-portfolio",
       cwd: process.env.HOME
         ? `${process.env.HOME}/nahndev-portfolio`
-        : "/home/deploy/nahndev-portfolio",
+        : "/root/nahndev-portfolio",
       script: "node_modules/next/dist/bin/next",
-      args: "start -p 3000",
+      args: `start -p ${PORT}`,
       env: {
         NODE_ENV: "production",
-        PORT: "3000",
+        PORT,
       },
       instances: 1,
       autorestart: true,

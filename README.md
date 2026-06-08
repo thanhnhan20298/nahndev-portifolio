@@ -56,16 +56,24 @@ public/images/                # WebP assets (see lib/content/assets.ts)
 | `lib/content/adventure.ts`          | Section order (nav follows automatically) |
 | `lib/content/assets.ts`             | Image paths under `public/images/`        |
 
-## Deploy
+## Deploy (VPS)
+
+Portfolio uses **port 3002** by default (leave 3000/8080 for other apps).
 
 ```bash
+# On VPS
+git clone https://github.com/thanhnhan20298/nahndev-portifolio.git nahndev-portfolio
+cd nahndev-portfolio
+npm ci
+cp .env.example .env.local   # set NEXT_PUBLIC_SITE_URL=https://yourdomain.com
 npm run build
-npm start
+pm2 start ecosystem.config.cjs
+pm2 save
 ```
 
-Use PM2 or your host's process manager. Set `PORT` if the default `3000` is taken.
+Nginx: proxy `yourdomain.com` → `http://127.0.0.1:3002`, then `certbot --nginx` for HTTPS.
 
-Copy `.env.example` → `.env.local` for `NEXT_PUBLIC_SITE_URL`.
+Copy `.env.example` → `.env.local` locally too for `NEXT_PUBLIC_SITE_URL` and optional `NEXT_PUBLIC_PLAUSIBLE_DOMAIN`.
 
 ## Extras
 
